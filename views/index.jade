@@ -1,0 +1,24 @@
+extends include/layout
+
+block content
+  div(ng-controller="expensesController")
+    h1 There are {{ expenses.length }} expense
+    ul
+        li(ng-repeat="expense in expenses")
+            div {{ expense.name }}
+            div {{ expense.amount }}
+            div a {{ expense.spending_date }}
+            button(ng-click="deleteExpense(expense.id)") Remove
+            button(ng-click="editExpense(expense)") Edit
+    form(ng-submit="updateExpense()")
+      input(type="text" style="display:none" ng-model="selectedExpenseId")
+      input(type="text" ng-model="selectedExpenseName")
+      input(type="text" ng-model="selectedExpenseAmount")
+      input(type="text" ng-model="selectedExpenseDate")
+      button(type="submit") Edit
+    form(ng-submit="addExpense()")
+      input(type="text" ng-model="newExpenseName")
+      input(type="text" ng-model="newExpenseAmount")
+      input(type="text" ng-model="newExpenseDate")
+      button(type="submit") Add
+  a(href="/download") Download PDF
