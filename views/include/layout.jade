@@ -1,11 +1,18 @@
 doctype html
-html(ng-app="expenseApp")
+html(ng-app='expenseApp')
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
-    block content
-    script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js')
-    script(src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular-resource.min.js')
+    header
+      .logo
+        img(src='images/logo.png' alt='logo')
+    div(role='main')
+      .container
+        block content
+    script(src='/dependencies/lodash/lodash.min.js')
+    script(src='/dependencies/angular/angular.min.js')
+    script(src='/dependencies/angular-resource/angular-resource.min.js')
+    script(src='/dependencies/d3/d3.min.js')
     script(src='javascripts/app.js')
     script(src='javascripts/controllers/expenses-controller.js')

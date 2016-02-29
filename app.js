@@ -27,6 +27,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', commonRoutes);
 app.use('/expenses', expensesRoutes);
 
+/* TODO
+ * use build system for node_modules
+ */ 
+app.use('/dependencies/', express.static(__dirname + '/node_modules/'));
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
@@ -57,8 +62,6 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
-
-//app.use('/js', express.static(__dirname + '/public/javascripts'));
 
 app.listen(3000, function() {
   console.log('I\'m Listening');
