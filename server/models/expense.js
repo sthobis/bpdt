@@ -20,16 +20,14 @@ module.exports.get = function (expenseId) {
  * Expense model constructor
  */
 module.exports.new = function (newExpense) {
-  return db.none('INSERT INTO expenses (name, amount, spending_date) VALUES ($1,$2,$3)',
-    [newExpense.name, newExpense.amount, newExpense.spending_date]);
+  return db.none('INSERT INTO expenses (name, amount, spending_date) VALUES (${name},${amount},${spending_date})', newExpense);
 }
 
 /*
  * Expense model update/setter
  */
 module.exports.update = function (newExpense) {
-  return db.none('UPDATE expenses SET name = $1, amount = $2, spending_date = $3 WHERE id = $4', 
-    [newExpense.name, newExpense.amount, newExpense.spending_date, newExpense.id]);
+  return db.any('UPDATE expenses SET name = ${name}, amount = ${amount}, spending_date = ${spending_date} WHERE id = ${id}', newExpense);
 }
 
 /*
