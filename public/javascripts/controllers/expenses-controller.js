@@ -153,7 +153,7 @@ app.controller('expensesController', ['$scope', 'Expenses', '$interval', functio
     $scope.selectedExpenseId = selectedExpense.id;
     $scope.selectedExpenseName = selectedExpense.name;
     $scope.selectedExpenseAmount = selectedExpense.amount;
-    $scope.selectedExpenseDate = selectedExpense.spending_date;
+    $scope.selectedExpenseDate = selectedExpense.spending_date.substring(0,10);
   }
 
   // send updated expense

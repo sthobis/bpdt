@@ -41,5 +41,5 @@ module.exports.delete = function (expenseId) {
  * Expense model query monthly
  */
 module.exports.monthly = function () {
-  return db.any('SELECT TO_CHAR( DATE_TRUNC(\'month\', spending_date), \'Mon-YY\') AS yearMonth, SUM(amount) AS monthlySum FROM expenses GROUP BY spending_date ORDER BY spending_date');
+  return db.any('SELECT TO_CHAR( yearMonth, \'Mon-YY\') AS yearMonth, monthlySum FROM (SELECT DATE_TRUNC(\'month\', spending_date) as yearMonth, SUM(amount) AS monthlySum FROM expenses GROUP BY yearMonth ORDER BY yearMonth) AS grouped');
 }
